@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte del Vehículo - Carfax Panamá</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Reporte del Vehículo</h1>
+        <h2>Placa: {{ report.plate }}</h2>
+        <ul>
+            <li><strong>Marca:</strong> {{ report.make }}</li>
+            <li><strong>Modelo:</strong> {{ report.model }}</li>
+            <li><strong>Año:</strong> {{ report.year }}</li>
+            <li><strong>Accidentes:</strong> {{ report.accidents }}</li>
+            <li><strong>Dueños:</strong> {{ report.owners }}</li>
+        </ul>
+        <a href="/">Volver</a>
+    </div>
+</body>
+</html>
