@@ -32,14 +32,14 @@ class VehicleView(ModelView):
         'owners': IntegerField
     }
 
-    form_args = {
-        'plate': dict(label='License Plate'),
-        'make': dict(label='Make'),
-        'model': dict(label='Model'),
-        'year': dict(label='Year'),
-        'accidents': dict(label='Accidents'),
-        'owners': dict(label='Owners')
-    }
+  form_args = {
+    'plate': {'label': 'License Plate'},
+    'make': {'label': 'Make'},
+    'model': {'label': 'Model'},
+    'year': {'label': 'Year'},
+    'accidents': {'label': 'Accidents'},
+    'owners': {'label': 'Owners'}
+}
 
     form_create_rules = ['plate', 'make', 'model', 'year', 'accidents', 'owners']
     form_edit_rules = form_create_rules
