@@ -1,19 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carfax Panamá</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h1>Carfax Panamá</h1>
-        <p>Ingrese el número de placa para obtener el historial del vehículo.</p>
-        <form action="/report" method="post">
-            <input type="text" name="plate" placeholder="Ingrese la placa" required>
-            <button type="submit">Generar Reporte</button>
-        </form>
-    </div>
+    <h1>Buscar historial de vehículo</h1>
+    <form action="/report" method="POST">
+        <label for="plate">Placa:</label>
+        <input type="text" id="plate" name="plate" required>
+        <button type="submit">Buscar</button>
+    </form>
+    <p><a href="/admin/">Ir al panel de administración</a></p>
 </body>
 </html>
+
