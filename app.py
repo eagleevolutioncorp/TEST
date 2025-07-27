@@ -2,6 +2,8 @@ from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
+from flask_admin.form import rules
+from wtforms import IntegerField, StringField
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///vehicles.db'
@@ -21,9 +23,6 @@ class Vehicle(db.Model):
     def __repr__(self):
         return f'<Vehicle {self.plate}>'
 
-from flask_admin.form import rules
-from wtforms.fields import IntegerField, StringField
-
 class VehicleView(ModelView):
     form_overrides = {
         'plate': StringField,
@@ -34,7 +33,15 @@ class VehicleView(ModelView):
         'owners': IntegerField
     }
 
-    # Esto es opcional pero útil si quieres más control visual
+    form_args = {
+        'plate': {'label': 'License Plate'},
+        'make': {'label': 'Make'},
+        'model': {'label': 'Model'},
+        'year': {'label': 'Year'},
+        'accidents': {'label': 'Accidents'},
+        'owners': {'label': 'Owners'}
+    }
+
     form_create_rules = [
         'plate', 'make', 'model', 'year', 'accidents', 'owners'
     ]
@@ -42,10 +49,8 @@ class VehicleView(ModelView):
 
 admin.add_view(VehicleView(Vehicle, db.session))
 
-
 with app.app_context():
     db.create_all()
-    # Add some dummy data if the db is empty
     if not Vehicle.query.first():
         vehicles = [
             Vehicle(plate='AB1234', make='Toyota', model='Corolla', year=2020, accidents=0, owners=1),
