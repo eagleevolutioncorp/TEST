@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
-from wtforms import IntegerField, StringField
+from wtforms.fields import IntegerField, StringField
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///vehicles.db'
@@ -33,12 +33,12 @@ class VehicleView(ModelView):
     }
 
     form_args = {
-        'plate': {'label': 'License Plate'},
-        'make': {'label': 'Make'},
-        'model': {'label': 'Model'},
-        'year': {'label': 'Year'},
-        'accidents': {'label': 'Accidents'},
-        'owners': {'label': 'Owners'}
+        'plate': dict(label='License Plate'),
+        'make': dict(label='Make'),
+        'model': dict(label='Model'),
+        'year': dict(label='Year'),
+        'accidents': dict(label='Accidents'),
+        'owners': dict(label='Owners')
     }
 
     form_create_rules = ['plate', 'make', 'model', 'year', 'accidents', 'owners']
