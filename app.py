@@ -1,10 +1,13 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///vehicles.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+admin = Admin(app, name='Carfax Panamá', template_mode='bootstrap3')
 
 class Vehicle(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -17,7 +20,7 @@ class Vehicle(db.Model):
 
     def __repr__(self):
         return f'<Vehicle {self.plate}>'
-
+admin.add_view(ModelView(Vehicle, db.session))
 with app.app_context():
     db.create_all()
     # Add some dummy data if the db is empty
