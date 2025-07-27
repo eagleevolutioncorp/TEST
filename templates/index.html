@@ -1,16 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Carfax Panamá</title>
+    <meta charset="UTF-8">
+    <title>Carfax Panamá – Buscar Historial</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <h1>Buscar historial de vehículo</h1>
-    <form action="/report" method="POST">
-        <label for="plate">Placa:</label>
-        <input type="text" id="plate" name="plate" required>
-        <button type="submit">Buscar</button>
-    </form>
-    <p><a href="/admin/">Ir al panel de administración</a></p>
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+                <h1 class="mb-4 text-primary">🔍 Buscar historial de vehículo</h1>
+                <form method="POST" action="/report" class="card p-4 shadow">
+                    <div class="mb-3">
+                        <label for="plate" class="form-label">Placa del vehículo:</label>
+                        <input type="text" id="plate" name="plate" class="form-control" placeholder="Ej: AB1234" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Buscar</button>
+                </form>
+                <div class="mt-3">
+                    <a href="/admin/" class="text-decoration-none">Ir al panel de administración</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
-
