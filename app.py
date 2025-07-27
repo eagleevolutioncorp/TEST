@@ -21,7 +21,27 @@ class Vehicle(db.Model):
     def __repr__(self):
         return f'<Vehicle {self.plate}>'
 
-admin.add_view(ModelView(Vehicle, db.session))
+from flask_admin.form import rules
+from wtforms.fields import IntegerField, StringField
+
+class VehicleView(ModelView):
+    form_overrides = {
+        'plate': StringField,
+        'make': StringField,
+        'model': StringField,
+        'year': IntegerField,
+        'accidents': IntegerField,
+        'owners': IntegerField
+    }
+
+    # Esto es opcional pero útil si quieres más control visual
+    form_create_rules = [
+        'plate', 'make', 'model', 'year', 'accidents', 'owners'
+    ]
+    form_edit_rules = form_create_rules
+
+admin.add_view(VehicleView(Vehicle, db.session))
+
 
 with app.app_context():
     db.create_all()
