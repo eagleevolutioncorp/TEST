@@ -2,7 +2,6 @@ from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
-from flask_admin.form import rules
 from wtforms import IntegerField, StringField
 
 app = Flask(__name__)
@@ -42,9 +41,7 @@ class VehicleView(ModelView):
         'owners': {'label': 'Owners'}
     }
 
-    form_create_rules = [
-        'plate', 'make', 'model', 'year', 'accidents', 'owners'
-    ]
+    form_create_rules = ['plate', 'make', 'model', 'year', 'accidents', 'owners']
     form_edit_rules = form_create_rules
 
 admin.add_view(VehicleView(Vehicle, db.session))
