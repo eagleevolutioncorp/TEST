@@ -20,7 +20,9 @@ class Vehicle(db.Model):
 
     def __repr__(self):
         return f'<Vehicle {self.plate}>'
+
 admin.add_view(ModelView(Vehicle, db.session))
+
 with app.app_context():
     db.create_all()
     # Add some dummy data if the db is empty
