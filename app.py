@@ -70,9 +70,9 @@ def index():
 
 @app.route('/report', methods=['POST'])
 def report():
-    plate = request.form['plate']
+    plate = request.form['plate'].strip().upper()
     vehicle = Vehicle.query.filter_by(plate=plate).first()
-    return render_template('report.html', report=vehicle)
+    return render_template('report.html', vehicle=vehicle)
 
 # Inicia app
 if __name__ == '__main__':
