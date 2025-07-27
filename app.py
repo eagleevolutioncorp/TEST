@@ -26,13 +26,16 @@ class Vehicle(db.Model):
 
 # Login
 login_manager = LoginManager(app)
+login_manager.login_view = 'login'
 
 class User(UserMixin):
     id = 1
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User()
+    if user_id == "1":
+        return User()
+    return None
 
 # Vista personalizada de admin
 class SecureAdminIndexView(AdminIndexView):
@@ -81,7 +84,8 @@ def logout():
 def create_tables():
     db.create_all()
 
-# Run local (ignorado por gunicorn en producción)
+# Ejecutar localmente
 if __name__ == '__main__':
     app.run(debug=True)
+
 
